@@ -76,6 +76,9 @@ function TripDetail() {
             <p className="text-muted small mb-0 fw-medium">
               📍 {trip.destination} • {new Date(trip.startDate).toLocaleDateString()} - {new Date(trip.endDate).toLocaleDateString()}
             </p>
+            {trip.description && (
+              <p className="text-muted small mb-0 mt-1">{trip.description}</p>
+            )}
           </div>
         </div>
         <div className="d-flex gap-2">
