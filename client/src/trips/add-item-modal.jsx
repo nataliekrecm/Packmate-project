@@ -2,10 +2,11 @@ import { useState } from "react";
 import FetchHelper from "../fetch-helper";
 import CreateItemModal from "../items/create-item-modal";
 
-function AddItemModal({ tripId, itemCatalog, packingList, onClose }) {
+function AddItemModal({ tripId, itemCatalog: initialCatalog, packingList, onClose }) {
   const [selectedItemId, setSelectedItemId] = useState("");
   const [error, setError] = useState(null);
   const [showCreateItem, setShowCreateItem] = useState(false);
+  const [localCatalog, setLocalCatalog] = useState(initialCatalog);
 
   async function handleAddItem() {
     if (!selectedItemId) {
@@ -23,16 +24,20 @@ function AddItemModal({ tripId, itemCatalog, packingList, onClose }) {
     }
   }
 
-  const availableItems = itemCatalog.filter(
+  const availableItems = localCatalog.filter(
     (item) => !packingList.some((p) => p.itemId === item.id)
   );
 
   if (showCreateItem) {
     return (
       <CreateItemModal
-        onClose={(newItem) => {
+        onClose={async (newItem) => {
           setShowCreateItem(false);
-          if (newItem) setSelectedItemId(newItem.id);
+          if (newItem) {
+            const result = await FetchHelper.item.list();
+            if (result.ok) setLocalCatalog(result.data.itemList);
+            setSelectedItemId(newItem.id);
+          }
         }}
       />
     );
@@ -50,7 +55,7 @@ function AddItemModal({ tripId, itemCatalog, packingList, onClose }) {
             {error && <div className="alert alert-danger py-2 small">{error}</div>}
             <div className="mb-4">
               <label className="form-label">Search or select item *</label>
-              {itemCatalog.length === 0 ? (
+              {localCatalog.length === 0 ? (
                 <div className="alert alert-warning py-2 small mb-0">
                   The catalog is empty. Please define items in the global catalog first.
                 </div>
