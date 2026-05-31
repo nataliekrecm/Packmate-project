@@ -11,9 +11,7 @@ PackMate is an application for managing packing lists for your trips. You can cr
 - File-based storage (JSON files)
 
 **Frontend**
-- React 19
-- React Router v7
-- Bootstrap 5
+- React (routing via React Router, styling via Bootstrap)
 
 ## How to run
 
