@@ -66,7 +66,7 @@ function TripDetail() {
   const packedItems = trip.packingList?.filter(item => item.isPacked).length || 0;
   return (
     <div className="pb-5">
-      <div className="mb-5 pt-4 d-flex align-items-center justify-content-between">
+      <div className="mb-5 pt-4 d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
         <div className="d-flex align-items-center gap-4">
           <button className="btn btn-light bg-white border shadow-sm p-3 d-flex align-items-center justify-content-center" style={{ borderRadius: '15px', width: '48px', height: '48px' }} onClick={() => navigate("/")}>
             ←
@@ -81,7 +81,7 @@ function TripDetail() {
             )}
           </div>
         </div>
-        <div className="d-flex gap-2">
+        <div className="d-grid d-sm-flex gap-2">
           <button className="btn btn-outline px-4 py-2" onClick={() => setShowEditTrip(true)}>
             Edit Trip
           </button>

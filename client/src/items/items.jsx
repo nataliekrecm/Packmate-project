@@ -40,14 +40,16 @@ function Items() {
 
   return (
     <div className="pb-5">
-      <div className="d-flex justify-content-between align-items-center mb-5 pt-4">
+      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-5 pt-4">
         <div>
           <h1 className="h1 fw-bold mb-1" style={{ letterSpacing: '-0.03em' }}>Item Catalog</h1>
           <p className="text-muted mb-0">Manage items you reuse across different trips.</p>
         </div>
-        <button className="btn btn-primary px-4 py-2" onClick={() => setShowForm(true)}>
-          + Add New Item
-        </button>
+        <div className="d-grid d-sm-flex">
+          <button className="btn btn-primary px-4 py-2" onClick={() => setShowForm(true)}>
+            + Add New Item
+          </button>
+        </div>
       </div>
 
       {itemList.length === 0 ? (

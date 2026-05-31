@@ -57,12 +57,14 @@ function Dashboard() {
           <h1 className="h1 fw-bold mb-1" style={{ letterSpacing: '-0.03em' }}>My Trips</h1>
           <p className="text-muted mb-0">Track your packing and plan your next adventures.</p>
         </div>
-        <button
-          className="btn btn-primary px-4 py-2"
-          onClick={() => setShowForm(true)}
-        >
-          + Create Trip
-        </button>
+        <div className="d-grid d-sm-flex">
+          <button
+            className="btn btn-primary px-4 py-2"
+            onClick={() => setShowForm(true)}
+          >
+            + Create Trip
+          </button>
+        </div>
       </div>
 
       {tripList.length === 0 ? (
